@@ -2,13 +2,16 @@
 
 <h1>Listing Movies</h1>
 
+<% if @failure %>
+	<h3><%= @failure %></h3>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
       <th>Title</th>
       <th>Hotness</th>
       <th>Image url</th>
-      <th>Synopsis</th>
       <th>Rating</th>
       <th>Genre</th>
       <th>Director</th>
@@ -23,7 +26,6 @@
         <td><%= movie.title %></td>
         <td><%= movie.hotness %></td>
         <td><%= movie.image_url %></td>
-        <td><%= movie.synopsis %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.genre %></td>
         <td><%= movie.director %></td>
@@ -37,5 +39,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Movie', new_movie_path %>
