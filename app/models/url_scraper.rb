@@ -1,4 +1,4 @@
-class Scrape
+class UrlScraper
 	attr_accessor :title, :hotness, :image_url, :rating, :director,
 	:genre, :release_date, :runtime, :synopsis, :failure
 
@@ -18,10 +18,10 @@ class Scrape
 				s = s.encode("UTF-16be", :invalid=>:replace, :replace=>"?").encode('UTF-8')
 			end
 			self.synopsis = s
-			return true
+			return self
 		rescue Exception => e
 			self.failure = "Something went wrong with the scrape"
+			return self
 		end
 	end
-
 end

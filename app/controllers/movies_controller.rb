@@ -12,6 +12,23 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    if @movie_data.failure == nil
+      @movie = Movie.new(
+        title: @movie_data.title,
+        hotness: @movie_data.hotness,
+        image_url: @movie_data.image_url,
+        synopsis: @movie_data.synopsis,
+        rating: @movie_data.rating,
+        genre: @movie_data.genre,
+        director: @movie_data.director,
+        runtime: @movie_data.runtime
+        )
+    else
+      @movie = Movie.new
+      if params[:search]
+        @failure = @movie_data.failure
+      end
+    end
   end
 
   def edit
@@ -63,6 +80,6 @@ class MoviesController < ApplicationController
     end
 
     def scrape
-      @movie_data = Scrape.new.scrape_new_movie(params[:search].to_s)
+      @movie_data = UrlScraper.new.scrape_new_movie(params[:search].to_s)
     end
 end
